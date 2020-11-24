@@ -1,0 +1,15 @@
+.covidCardSize {
+    width: 30%;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.covidCardColor {
+    background-color: #282c34;
+}
+
+.covidTextColor {
+    color: #767980;
+}

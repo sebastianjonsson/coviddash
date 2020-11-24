@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Card, CardBody, CardHeader, Row } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import ActionCreator from './actions/actionCreator';
 import CovidCard from './covidCard';
 import { CovidStore } from './stores/covidStore';
 import StoreFactory from './stores/storeFactory';
+import './covidDash.css';
 
 export default class CovidDash extends Component {
     constructor(props) {
@@ -29,32 +30,35 @@ export default class CovidDash extends Component {
     }
 
     render() {
+        if (this.state.covid.country === "Sweden") {
+            var country = "Sverige";
+        }
         return (
-            <>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFUmehnneHwuzye9MHBLtT0S7Uk8gipZ7SxQ&usqp=CAU" alt=""></img>
-                <Card>
-                    <CardHeader>
-                        <Row>{this.state.covid.country}</Row>
-                        <Row>Invånare: {this.state.covid.population}</Row>
-                    </CardHeader>
-                    <CardBody>
-                        <CovidCard
-                            covidText={"Bekräftade"}
-                            covidCases={this.state.covid.cases}
-                        />
-                        <CovidCard
-                            covidText={"Testade"}
-                            covidCases={this.state.covid.tests} />
-                        <CovidCard
-                            covidText={"Kritiskt sjuka"}
-                            covidCases={this.state.covid.critical} />
+            <Col md={{ span: 6, offset: 3 }}>
+                <Row>{country} Invånare: {this.state.covid.population}</Row>
+                <Row>
+                    <CovidCard
+                        covidText={"Bekräftade"}
+                        covidCases={this.state.covid.cases}
+                        color = {"#08cf08"}
+                    />
+                    <CovidCard
+                        covidText={"Testade"}
+                        covidCases={this.state.covid.tests}
+                        color={"#e6ff01"} />
+                </Row>
+                <Row className="mt-5">
+                    <CovidCard
+                        covidText={"Kritiskt sjuka"}
+                        covidCases={this.state.covid.critical}
+                        color="#ff01ff" />
 
-                        <CovidCard
-                            covidText={"Döda"}
-                            covidCases={this.state.covid.deaths} />
-                    </CardBody>
-                </Card>
-            </>
+                    <CovidCard
+                        covidText={"Döda"}
+                        covidCases={this.state.covid.deaths}
+                        color="#ff0101" />
+                </Row>
+            </Col>
         )
     }
 }
