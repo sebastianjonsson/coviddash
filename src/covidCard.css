@@ -1,5 +1,5 @@
 .covidCardSize {
-    width: 30%;
+    width: 25%;
 }
 
 .textCenter {
@@ -12,4 +12,16 @@
 
 .covidTextColor {
     color: #767980;
+}
+
+.covidTextFont {
+    font-family: "Lucida Console", Courier, monospace;
+}
+
+.covidFontSizeNumbers {
+    font-size: 2em;
+}
+
+.covidFontSizeText {
+    font-size: 1em;
 }

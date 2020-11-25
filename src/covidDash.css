@@ -2,6 +2,14 @@
     color: #282c34;
 }
 
-.cardSize {
-    width: 70%;
+.covidCountryFontSize {
+    font-size: 7vw;
+}
+
+.covidTrackerSize {
+    font-size: 3vw;
+}
+
+.covidTrackerFont {
+    font-family: "Lucida Console", Courier, monospace;
 }

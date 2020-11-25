@@ -13,15 +13,15 @@ export default class CovidCard extends Component {
     
     render() {
         return (
-            <Card className="covidCardSize ml-5 mr-5">
+            <Card className="covidCardSize border-0 ml-5 mr-5">
                 <CardBody style={{color: this.props.color}} className="covidCardColor">
                     <Row>
-                        <Col className="textCenter covidTextColor">
+                        <Col className="textCenter covidTextColor covidTextFont covidFontSizeText">
                             {this.props.covidText}
                         </Col>
                     </Row>
-                    <Row>
-                        <Col className="textCenter">
+                    <Row className="mt-2">
+                        <Col className="textCenter covidTextFont covidFontSizeNumbers">
                             {this.props.covidCases}
                         </Col>
                     </Row>
