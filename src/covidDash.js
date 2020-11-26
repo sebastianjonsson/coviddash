@@ -41,12 +41,12 @@ export default class CovidDash extends Component {
                         <Col className="covidCountryFontSize">
                             {country}
                         </Col>
-                        <Col className="covidTrackerSize covidTrackerFont">
-                            <Row className="pl-2">Corona</Row> 
+                        <Col className="covidTrackerSize">
+                            <Row>Corona</Row> 
                             <Row>Tracker</Row>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="mt-4">
                         <CovidCard
                             covidText={"Bekräftade"}
                             covidCases={this.state.covid.cases}
