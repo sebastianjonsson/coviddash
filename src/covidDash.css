@@ -3,12 +3,13 @@
 }
 
 .covidCountryFontSize {
-    font-size: 7vw;
+    font-size: 6vw;
+    color: #212224
 }
 
 .covidTrackerSize {
-    font-size: 3vw;
-    -ms-transform: rotate(20deg); /* IE 9 */
+    font-size: 2vw;
+    -ms-transform: rotate(20deg);
     transform: rotate(20deg);
     padding-right: 12vw;
     margin-top: 70px;
@@ -16,4 +17,5 @@
 
 .covidTrackerFont {
     font-family: "Lucida Console", Courier, monospace;
+    color: #212224
 }

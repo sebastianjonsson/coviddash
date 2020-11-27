@@ -3,14 +3,6 @@ import { Card, CardBody, Col, Row } from 'reactstrap'
 import './covidCard.css';
 
 export default class CovidCard extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             
-        }
-    }
-    
     render() {
         return (
             <Card className="covidCardSize border-0 ml-5 mr-5">

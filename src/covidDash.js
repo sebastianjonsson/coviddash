@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardBody, CardHeader, Col, Container, Row } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 import ActionCreator from './actions/actionCreator';
 import CovidCard from './covidCard';
 import { CovidStore } from './stores/covidStore';
@@ -41,8 +41,8 @@ export default class CovidDash extends Component {
                         <Col className="covidCountryFontSize">
                             {country}
                         </Col>
-                        <Col className="covidTrackerSize">
-                            <Row>Corona</Row> 
+                        <Col className="covidTrackerSize covidTrackerFont">
+                            <Row>Corona</Row>
                             <Row>Tracker</Row>
                         </Col>
                     </Row>
