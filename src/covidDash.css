@@ -8,11 +8,8 @@
 }
 
 .covidTrackerSize {
-    font-size: 2vw;
-    -ms-transform: rotate(20deg);
-    transform: rotate(20deg);
-    padding-right: 12vw;
-    margin-top: 70px;
+    font-size: 3vw;
+    margin-top: 1em;
 }
 
 .covidTrackerFont {
