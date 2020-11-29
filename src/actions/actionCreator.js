@@ -8,10 +8,16 @@ export class ActionCreator {
         this.api = api;
     }
 
-    loadCovid() {
-        return this.api.getAll().then(response => {
-            Dispatcher.dispatch(new Action(Actions.covidLoaded, response.data));
+    loadCovidCountries() {
+        return this.api.getAllCountries().then(response => {
+            Dispatcher.dispatch(new Action(Actions.covidCountriesLoaded, response.data));
         });
+    }
+
+    loadCovidStats() {
+        return this.api.getCovidStats().then(response => {
+            Dispatcher.dispatch(new Action(Actions.covidStatsLoaded, response.data));
+        })
     }
 }
 

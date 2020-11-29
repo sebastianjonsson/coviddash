@@ -16,3 +16,14 @@
     font-family: "Lucida Console", Courier, monospace;
     color: #212224
 }
+
+.dropDownSize {
+    height: 20vw;
+    overflow: auto;
+    width: 20vw;
+}
+
+.dropDownButtonSize {
+    width: 20vw;
+}
+

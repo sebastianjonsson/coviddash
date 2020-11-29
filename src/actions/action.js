@@ -6,5 +6,6 @@ export class Action {
 }
 
 export const Actions = {
-    covidLoaded: "COVID_LOADED"
+    covidCountriesLoaded: "COVID_COUNTRIES_LOADED",
+    covidStatsLoaded: "COVID_STATS_LOADED"
 };
