@@ -5,18 +5,21 @@ import CovidCard from './covidCard';
 import { CovidStore } from './stores/covidStore';
 import StoreFactory from './stores/storeFactory';
 import './covidDash.css';
+import { CovidStatsStore } from './stores/covidStatsStore';
 
 export default class CovidDash extends Component {
     constructor(props) {
         super(props)
 
         this.store = StoreFactory.getInstanceOf(CovidStore);
+        this.store.stats = StoreFactory.getInstanceOf(CovidStatsStore);
 
         this.state = {
             covid: this.store.get(),
             dropDownToggleIsOpen: false,
             searchText: '',
-            isSelected: ''
+            isSelected: '',
+            covidStats: []
         };
 
         this.toggleDropDown = this.toggleDropDown.bind(this);
@@ -59,11 +62,17 @@ export default class CovidDash extends Component {
     }
 
     getCovidForCountry(country) {
-        console.log(country);
         this.setState({ isSelected: country});
+
+        ActionCreator.loadCovidStats(country);
+
+        this.store.stats.subscribe("CovidStatsStore", () => {
+            this.setState({ covidStats: this.store.stats.get() })
+        })
     }
 
     render() {
+        console.log(this.state.covidStats);
         return (
             <Container>
                 <Col md={{ span: 6, offset: 5 }}>
@@ -76,7 +85,7 @@ export default class CovidDash extends Component {
                 </Col>
                 <Col md={{ span: 6, offset: 4 }}>
                     <ButtonDropdown className="dropDownButtonSize" isOpen={this.state.dropDownToggleIsOpen} toggle={this.toggleDropDown}>
-                        <DropdownToggle caret color="primary" isOpen={this.toggleDropDown}>
+                        <DropdownToggle caret color="primary">
                             {this.state.isSelected ? this.state.isSelected : 'Select a country'}
                         </DropdownToggle>
                         <DropdownMenu className="dropDownSize">
@@ -99,23 +108,23 @@ export default class CovidDash extends Component {
                     <Row className="mt-4">
                         <CovidCard
                             covidText={"Bekräftade"}
-                            covidCases={this.state.covid.cases}
+                            covidCases={this.state.covidStats.cases}
                             color={"#08cf08"}
                         />
                         <CovidCard
                             covidText={"Testade"}
-                            covidCases={this.state.covid.tests}
+                            covidCases={this.state.covidStats.tests}
                             color={"#e6ff01"} />
                     </Row>
                     <Row className="mt-5">
                         <CovidCard
                             covidText={"Kritiskt sjuka"}
-                            covidCases={this.state.covid.critical}
+                            covidCases={this.state.covidStats.critical}
                             color="#ff01ff" />
 
                         <CovidCard
                             covidText={"Döda"}
-                            covidCases={this.state.covid.deaths}
+                            covidCases={this.state.covidStats.deaths}
                             color="#ff0101" />
                     </Row>
                 </Col>

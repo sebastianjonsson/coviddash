@@ -1,10 +1,12 @@
 import { EventEmitter, StoreEventEmitter } from "../flux/eventEmitter";
+import { CovidStatsStore } from "./covidStatsStore";
 import { CovidStore } from "./covidStore";
 
 class StoreFactory {
     constructor() {
         this.stores = [
             { name: CovidStore.getName(), instance: new CovidStore(new StoreEventEmitter(new EventEmitter())) },
+            { name: CovidStatsStore.getName(), instance: new CovidStatsStore(new StoreEventEmitter(new EventEmitter())) }
         ];
     }
 

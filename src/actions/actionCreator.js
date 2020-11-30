@@ -14,8 +14,8 @@ export class ActionCreator {
         });
     }
 
-    loadCovidStats() {
-        return this.api.getCovidStats().then(response => {
+    loadCovidStats(country) {
+        return this.api.getCovidStats(country).then(response => {
             Dispatcher.dispatch(new Action(Actions.covidStatsLoaded, response.data));
         })
     }
