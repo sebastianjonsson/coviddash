@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { ButtonDropdown, Col, Container, DropdownItem, DropdownMenu, DropdownToggle, Input, Row } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 import ActionCreator from './actions/actionCreator';
 import CovidCard from './covidCard';
 import { CovidStore } from './stores/covidStore';
 import StoreFactory from './stores/storeFactory';
 import './covidDash.css';
 import { CovidStatsStore } from './stores/covidStatsStore';
+import CountryDropdown from './components/countryDropdown';
 
 export default class CovidDash extends Component {
     constructor(props) {
@@ -62,7 +63,7 @@ export default class CovidDash extends Component {
     }
 
     getCovidForCountry(country) {
-        this.setState({ isSelected: country});
+        this.setState({ isSelected: country });
 
         ActionCreator.loadCovidStats(country);
 
@@ -72,7 +73,6 @@ export default class CovidDash extends Component {
     }
 
     render() {
-        console.log(this.state.covidStats);
         return (
             <Container>
                 <Col md={{ span: 6, offset: 5 }}>
@@ -84,47 +84,37 @@ export default class CovidDash extends Component {
                     </Row>
                 </Col>
                 <Col md={{ span: 6, offset: 4 }}>
-                    <ButtonDropdown className="dropDownButtonSize" isOpen={this.state.dropDownToggleIsOpen} toggle={this.toggleDropDown}>
-                        <DropdownToggle caret color="primary">
-                            {this.state.isSelected ? this.state.isSelected : 'Select a country'}
-                        </DropdownToggle>
-                        <DropdownMenu className="dropDownSize">
-                            <Input
-                                className="form-control"
-                                value={this.state.searchText}
-                                type="text"
-                                placeholder="Search..."
-                                onChange={this.onSearch}>
-                            </Input>
-                            {this.state.covid.map((report) =>
-                                <DropdownItem onClick={() => this.getCovidForCountry(report.country)}>
-                                    {report.country}
-                                </DropdownItem>
-                            )}
-                        </DropdownMenu>
-                    </ButtonDropdown>
+                    <CountryDropdown
+                        toggleOpen={this.state.dropDownToggleIsOpen}
+                        toggle={this.toggleDropDown}
+                        isSelected={this.state.isSelected}
+                        value={this.state.searchText}
+                        onChange={this.onSearch}
+                        covidCountries={this.state.covid}
+                        getCountry={this.getCovidForCountry}
+                    />
                 </Col>
                 <Col md={{ span: 6, offset: 3 }}>
                     <Row className="mt-4">
                         <CovidCard
                             covidText={"Bekräftade"}
-                            covidCases={this.state.covidStats.cases}
+                            covidCases={this.state.covidStats.cases || null}
                             color={"#08cf08"}
                         />
                         <CovidCard
                             covidText={"Testade"}
-                            covidCases={this.state.covidStats.tests}
+                            covidCases={this.state.covidStats.tests || null}
                             color={"#e6ff01"} />
                     </Row>
                     <Row className="mt-5">
                         <CovidCard
                             covidText={"Kritiskt sjuka"}
-                            covidCases={this.state.covidStats.critical}
+                            covidCases={this.state.covidStats.critical || null}
                             color="#ff01ff" />
 
                         <CovidCard
                             covidText={"Döda"}
-                            covidCases={this.state.covidStats.deaths}
+                            covidCases={this.state.covidStats.deaths || null}
                             color="#ff0101" />
                     </Row>
                 </Col>
