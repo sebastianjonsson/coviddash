@@ -8,22 +8,22 @@
 }
 
 .covidTrackerSize {
-    font-size: 3vw;
+    font-size: 4vw;
     margin-top: 1em;
 }
 
 .covidTrackerFont {
     font-family: "Lucida Console", Courier, monospace;
-    color: #212224
+    color: #777b85
 }
 
 .dropDownSize {
-    height: 20vw;
+    height: 25em;
     overflow: auto;
-    width: 20vw;
+    width: 25em;
 }
 
 .dropDownButtonSize {
-    width: 20vw;
+    width: 25em;
 }
 

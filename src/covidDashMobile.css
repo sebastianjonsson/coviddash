@@ -1,0 +1,24 @@
+.covidCountryFontSizeMobile {
+    font-size: 6vw;
+    color: #212224
+}
+
+.covidTrackerSizeMobile {
+    font-size: 9.5vw;
+    margin-top: 1em;
+}
+
+.covidTrackerFontMobile {
+    font-family: "Lucida Console", Courier, monospace;
+    color: #777b85
+}
+
+.dropDownSizeMobile {
+    max-height: 15em;
+    overflow: auto;
+    width: 20em;
+}
+
+.dropDownButtonSizeMobile {
+    width: 20em;
+}
