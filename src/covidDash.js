@@ -8,6 +8,7 @@ import './covidDash.css';
 import './covidDashMobile.css';
 import { CovidStatsStore } from './stores/covidStatsStore';
 import CountryDropdown from './components/countryDropdown';
+import logo from './image/corona.jpg';
 
 export default class CovidDash extends Component {
     constructor(props) {
@@ -92,6 +93,11 @@ export default class CovidDash extends Component {
                         </Col>
                     </Row>
                 </Col>
+                <Col md={{ span: 8, offset: 5 }}>
+                    <Row>
+                        <img src={logo} width="250" alt=""></img>
+                    </Row>
+                </Col>
                 <Col md={{ span: 6, offset: 4 }}>
                     <CountryDropdown
                         toggleOpen={this.state.dropDownToggleIsOpen}
@@ -127,14 +133,19 @@ export default class CovidDash extends Component {
                             color="#ff0101" />
                     </Row>
                 </Col>
-            </Container>
+            </Container >
         }
         else {
             dash = <Container>
                 <Col className="ml-2">
-                        <Col className="covidTrackerSizeMobile covidTrackerFontMobile">
-                            <Row>Corona Tracker</Row>
-                        </Col>
+                    <Col className="covidTrackerSizeMobile covidTrackerFontMobile">
+                        <Row>Corona Tracker</Row>
+                    </Col>
+                </Col>
+                <Col xs={{ offset: 4 }}>
+                    <Row>
+                        <img src={logo} width="150" alt=""></img>
+                    </Row>
                 </Col>
                 <Col className="ml-2">
                     <CountryDropdown

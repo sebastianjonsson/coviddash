@@ -14,11 +14,11 @@
 }
 
 .dropDownSizeMobile {
-    max-height: 15em;
+    max-height: 20em;
     overflow: auto;
-    width: 20em;
+    width: 80vw;
 }
 
 .dropDownButtonSizeMobile {
-    width: 20em;
+    width: 80vw;
 }
