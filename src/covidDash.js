@@ -86,8 +86,8 @@ export default class CovidDash extends Component {
         var dash;
         if (!this.state.matches) {
             dash = <Container>
-                <Col md={{ span: 6, offset: 3 }}>
-                    <Row>
+                <Col md={{ span: 8, offset: 3 }}>
+                    <Row className="ml-4">
                         <Col className="covidTrackerSize covidTrackerFont">
                             <Row>Corona Tracker</Row>
                         </Col>
