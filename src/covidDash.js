@@ -144,7 +144,7 @@ export default class CovidDash extends Component {
                 </Col>
                 <Col xs={{ offset: 4 }}>
                     <Row>
-                        <img src={logo} width="150" alt=""></img>
+                        <img src={logo} width="150" height="150" alt=""></img>
                     </Row>
                 </Col>
                 <Col className="ml-2">
