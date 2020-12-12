@@ -142,9 +142,9 @@ export default class CovidDash extends Component {
                         <Row>Corona Tracker</Row>
                     </Col>
                 </Col>
-                <Col xs={{ offset: 4 }}>
+                <Col xs={{ offset: 3 }}>
                     <Row>
-                        <img src={logo} width="150" height="150" alt=""></img>
+                        <img className="ml-4" src={logo} width="150" height="150" alt=""></img>
                     </Row>
                 </Col>
                 <Col className="ml-2">
@@ -158,7 +158,7 @@ export default class CovidDash extends Component {
                         getCountry={this.getCovidForCountry}
                     />
                 </Col>
-                <Col className="ml-2 mt-5">
+                <Col className="ml-3 mt-5">
                     <Row>
                         <CovidCard
                             covidText={"Cases"}
