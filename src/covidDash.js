@@ -109,8 +109,8 @@ export default class CovidDash extends Component {
                         getCountry={this.getCovidForCountry}
                     />
                 </Col>
-                <Col md={{ span: 8, offset: 3 }}>
-                    <Row className="mt-4">
+                <Col md={{ span: 8, offset: 2 }}>
+                    <Row className="mt-4 ml-5">
                         <CovidCard
                             covidText={"Cases"}
                             covidCases={this.state.covidStats.cases || null}
@@ -121,7 +121,7 @@ export default class CovidDash extends Component {
                             covidCases={this.state.covidStats.tests || null}
                             color={"#e6ff01"} />
                     </Row>
-                    <Row className="mt-5">
+                    <Row className="mt-5 ml-5">
                         <CovidCard
                             covidText={"Critical"}
                             covidCases={this.state.covidStats.critical || null}
@@ -158,7 +158,7 @@ export default class CovidDash extends Component {
                         getCountry={this.getCovidForCountry}
                     />
                 </Col>
-                <Col className="ml-3 mt-5">
+                <Col className="ml-1 mt-5">
                     <Row>
                         <CovidCard
                             covidText={"Cases"}
