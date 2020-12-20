@@ -1,0 +1,9 @@
+.countryCardSize {
+    width: 18vw;
+    margin-left: 1vw;
+}
+
+.card .card-header {
+    background-color: #282c34;
+    color: white;
+  }

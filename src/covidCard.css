@@ -1,5 +1,5 @@
 .covidCardSize {
-    width: 27%;
+    width: 40%;
 }
 
 .textCenter {
@@ -11,7 +11,7 @@
 }
 
 .covidTextColor {
-    color: #767980;
+    color:white;
 }
 
 .covidTextFont {
@@ -19,10 +19,10 @@
 }
 
 .covidFontSizeNumbers {
-    font-size: 1.5vw;
+    font-size: 0.8vw;
 }
 
 .covidFontSizeText {
-    font-size: 1.1vw;
+    font-size: 0.8vw;
 }
 

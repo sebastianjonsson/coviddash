@@ -13,12 +13,6 @@ export class ActionCreator {
             Dispatcher.dispatch(new Action(Actions.covidCountriesLoaded, response.data));
         });
     }
-
-    loadCovidStats(country) {
-        return this.api.getCovidStats(country).then(response => {
-            Dispatcher.dispatch(new Action(Actions.covidStatsLoaded, response.data));
-        })
-    }
 }
 
 export default new ActionCreator(new CovidRoutes(new http()));

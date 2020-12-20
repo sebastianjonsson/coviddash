@@ -6,33 +6,28 @@ import { CovidStore } from './stores/covidStore';
 import StoreFactory from './stores/storeFactory';
 import './covidDash.css';
 import './covidDashMobile.css';
-import { CovidStatsStore } from './stores/covidStatsStore';
-import CountryDropdown from './components/countryDropdown';
 import logo from './image/corona.jpg';
+import CountryDropDownSelect from './components/countryDropDownSelect';
+import CountryCard from './countryCard';
 
 export default class CovidDash extends Component {
     constructor(props) {
         super(props)
 
         this.store = StoreFactory.getInstanceOf(CovidStore);
-        this.store.stats = StoreFactory.getInstanceOf(CovidStatsStore);
 
         this.state = {
             covid: this.store.get(),
-            dropDownToggleIsOpen: false,
-            searchText: '',
-            isSelected: '',
             covidStats: [],
-            matches: window.matchMedia("(max-width: 768px)").matches
+            matches: window.matchMedia("(max-width: 768px)").matches,
+            selectedCountriesStats: [],
         };
 
-        this.toggleDropDown = this.toggleDropDown.bind(this);
-        this.onSearch = this.onSearch.bind(this);
-        this.getCovidForCountry = this.getCovidForCountry.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.FindCountriesStatsBySelected = this.FindCountriesStatsBySelected.bind(this);
     }
 
     componentDidMount() {
-
         const handler = e => this.setState({ matches: e.matches });
         window.matchMedia("(max-width: 768px)").addListener(handler);
 
@@ -40,99 +35,59 @@ export default class CovidDash extends Component {
 
         this.store.subscribe("CovidStore", () => {
             this.setState({ covid: this.store.get() })
+            var data = this.FindCountriesStatsBySelected(this.state.covid, "Sweden");
+            this.setState({ selectedCountriesStats: [data] });
         });
-
-        var country = "Sweden";
-        this.getCovidForCountry(country);
     }
 
     componentWillUnmount() {
         this.store.unsubscribe("CovidStore");
     }
 
-    toggleDropDown() {
-        this.setState({ dropDownToggleIsOpen: !this.state.dropDownToggleIsOpen });
-    }
-
-    onSearch(event) {
-        this.setState({ searchText: event.currentTarget.value });
-
-        this.__filterCountries(event.currentTarget.value.toLowerCase());
-    }
-
-    __filterCountries(searchTerm) {
-        if (!searchTerm) {
-            this.setState({ covid: this.store.get() });
-
-            return;
-        }
-
-        var filtered = this.store.get().filter((x) => x.country && x.country.toLowerCase().indexOf(searchTerm) !== -1);
-
-        this.setState({ covid: filtered });
-    }
-
-    getCovidForCountry(country) {
-        this.setState({ isSelected: country });
-
-        ActionCreator.loadCovidStats(country);
-
-        this.store.stats.subscribe("CovidStatsStore", () => {
-            this.setState({ covidStats: this.store.stats.get() })
+    FindCountriesStatsBySelected(countryStatsArray, selectedCountries) {
+        console.log(countryStatsArray, selectedCountries);
+        return countryStatsArray.find((countryStats) => {
+            return countryStats.country === selectedCountries;
         })
     }
 
+    handleChange(event) {
+        if (!event) {
+            this.setState({ selectedCountriesStats: [] })
+            return;
+        }
+        var countryStatsArray = this.state.covid;
+        var data = event.map((country => this.FindCountriesStatsBySelected(countryStatsArray, country.value)));
+        this.setState({ selectedCountriesStats: data });
+    }
+
     render() {
+        console.log(this.state.selectedCountriesStats);
         var dash;
         if (!this.state.matches) {
-            dash = <Container>
-                <Col md={{ span: 8, offset: 3 }}>
-                    <Row className="ml-4">
+            dash = <Container className="mt-5">
+                <Col md={{ offset: 3 }}>
+                    <Row className="ml-3">
                         <Col className="covidTrackerSize covidTrackerFont">
                             <Row>Corona Tracker</Row>
                         </Col>
                     </Row>
                 </Col>
-                <Col md={{ span: 8, offset: 5 }}>
-                    <Row>
-                        <img src={logo} width="250" alt=""></img>
-                    </Row>
-                </Col>
-                <Col md={{ span: 6, offset: 4 }}>
-                    <CountryDropdown
-                        toggleOpen={this.state.dropDownToggleIsOpen}
-                        toggle={this.toggleDropDown}
-                        isSelected={this.state.isSelected}
-                        value={this.state.searchText}
-                        onChange={this.onSearch}
-                        covidCountries={this.state.covid}
-                        getCountry={this.getCovidForCountry}
-                    />
-                </Col>
-                <Col md={{ span: 8, offset: 2 }}>
-                    <Row className="mt-4 ml-5">
-                        <CovidCard
-                            covidText={"Cases"}
-                            covidCases={this.state.covidStats.cases || null}
-                            color={"#08cf08"}
+                    <Col md={{span: 1, offset: 2}}>
+                        {/* <img className="ml-3" src={logo} width="250" alt=""></img> */}
+                        <CountryDropDownSelect
+                            countries={this.state.covid.map((country => country.country))}
+                            defaultvalue={"Sweden"}
+                            onChange={this.handleChange}
                         />
-                        <CovidCard
-                            covidText={"Tests"}
-                            covidCases={this.state.covidStats.tests || null}
-                            color={"#e6ff01"} />
-                    </Row>
-                    <Row className="mt-5 ml-5">
-                        <CovidCard
-                            covidText={"Critical"}
-                            covidCases={this.state.covidStats.critical || null}
-                            color="#ff01ff" />
-
-                        <CovidCard
-                            covidText={"Deaths"}
-                            covidCases={this.state.covidStats.deaths || null}
-                            color="#ff0101" />
-                    </Row>
-                </Col>
+                        <Row>
+                            {this.state.selectedCountriesStats.map((selectedCountry) =>
+                                <CountryCard
+                                    selectedCountry={selectedCountry}
+                                />
+                            )}
+                        </Row>
+                    </Col>
             </Container >
         }
         else {
@@ -148,17 +103,8 @@ export default class CovidDash extends Component {
                     </Row>
                 </Col>
                 <Col className="ml-2">
-                    <CountryDropdown
-                        toggleOpen={this.state.dropDownToggleIsOpen}
-                        toggle={this.toggleDropDown}
-                        isSelected={this.state.isSelected}
-                        value={this.state.searchText}
-                        onChange={this.onSearch}
-                        covidCountries={this.state.covid}
-                        getCountry={this.getCovidForCountry}
-                    />
                 </Col>
-                <Col className="ml-1 mt-5">
+                <Col>
                     <Row>
                         <CovidCard
                             covidText={"Cases"}
