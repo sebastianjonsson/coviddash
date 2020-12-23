@@ -3,7 +3,7 @@
 }
 
 .covidTrackerSize {
-    font-size: 4em;
+    font-size: 3.4vw;
 }
 
 .covidTrackerFont {
@@ -18,6 +18,10 @@
 }
 
 .dropDownButtonSize {
-    width: 39em;
+    width: 34vw;
+}
+
+.dropDownButtonSizeMobile {
+    width: 2vw;
 }
 

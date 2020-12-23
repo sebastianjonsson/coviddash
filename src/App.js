@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import CovidDash from './covidDash';
 import "bootstrap/dist/css/bootstrap.min.css";
+import CovidDash from './covidDash/covidDash';
 
 document.body.style.backgroundColor = "#282c34";
 

@@ -1,7 +1,3 @@
-.covidCardSize {
-    width: 40%;
-}
-
 .textCenter {
     text-align: center;
 }
@@ -18,11 +14,7 @@
     font-family: "Lucida Console", Courier, monospace;
 }
 
-.covidFontSizeNumbers {
-    font-size: 0.8vw;
-}
-
-.covidFontSizeText {
+.covidFontSize {
     font-size: 0.8vw;
 }
 

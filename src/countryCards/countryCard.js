@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
-import { Card, CardBody, CardHeader, Row } from 'reactstrap'
-import CovidCard from './covidCard'
+import { Card, CardBody, Col, Row } from 'reactstrap'
+import CovidCard from '../covidCard/covidCard';
 import './countryCard.css';
+import './countryCardMobile.css';
 
 export default class CountryCard extends Component {
     render() {
+        var isMobile = this.props.isMobile;
         return (
-            <Card className="countryCardSize mt-3">
-                <CardHeader className="textCenter"> {this.props.selectedCountry.country} </CardHeader>
+            <Card className={isMobile ? "countryCardSizeMobile" : "countryCardSize mt-3"}>
                 <CardBody className="covidCardColor">
+                    <Row>
+                        <Col className="text-center covidTextColor">
+                            {this.props.selectedCountry.country}
+                        </Col>
+                    </Row>
                     <Row>
                         <CovidCard
                             covidText={"Cases"}
@@ -20,7 +26,7 @@ export default class CountryCard extends Component {
                             covidCases={this.props.selectedCountry.tests || null}
                             color={"#e6ff01"} />
                     </Row>
-                    <Row className="">
+                    <Row>
                         <CovidCard
                             covidText={"Critical"}
                             covidCases={this.props.selectedCountry.critical || null}

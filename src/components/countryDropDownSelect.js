@@ -9,7 +9,7 @@ export default class CountryDropDownSelect extends Component {
 
         return (
             <Select
-                className="dropDownButtonSize ml-5"
+                className={this.props.isMobile ? "dropDownButtonSizeMobile" : "dropDownButtonSize ml-5"}
                 defaultValue={defaultCountry}
                 options={countries}
                 isMulti
