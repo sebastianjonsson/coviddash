@@ -2,13 +2,8 @@
     color: #282c34;
 }
 
-.covidCountryFontSize {
-    font-size: 6vw;
-    color: #212224
-}
-
 .covidTrackerSize {
-    font-size: 4em;
+    font-size: 3.4vw;
 }
 
 .covidTrackerFont {
@@ -19,10 +14,14 @@
 .dropDownSize {
     height: 25em;
     overflow: auto;
-    width: 25em;
+    width: 15em;
 }
 
 .dropDownButtonSize {
-    width: 25em;
+    width: 34vw;
+}
+
+.dropDownButtonSizeMobile {
+    width: 2vw;
 }
 
