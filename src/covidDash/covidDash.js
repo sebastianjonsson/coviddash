@@ -91,18 +91,11 @@ export default class CovidDash extends Component {
         }
         else {
             dash = <Container>
-                <Col xs={{ offset: 2 }}>
+                <Col xs={{offset: 2}}>
                     <Row>
                         <Col className="covidTrackerSizeMobile covidTrackerFontMobile ml-2">
-                            <Row>
-                                Corona
-                                </Row>
-                            <Row>
-                                Tracker
-                                </Row>
-                        </Col>
-                        <Col>
-                            <img src={logo} width="105" height="105" alt=""></img>
+                            Corona Tracker
+                            <img src={logo} width="90" height="90" alt=""></img>
                         </Col>
                     </Row>
                 </Col>
@@ -116,7 +109,7 @@ export default class CovidDash extends Component {
                     <Row className="mt-2">
                         {this.state.selectedCountriesStats.map((selectedCountry, index) =>
                             <CountryCard
-                            key={index}
+                                key={index}
                                 selectedCountry={selectedCountry}
                                 isMobile={true}
                             />

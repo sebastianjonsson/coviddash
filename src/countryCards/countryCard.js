@@ -25,13 +25,6 @@ export default class CountryCard extends Component {
                             covidText={"Tests"}
                             covidCases={this.props.selectedCountry.tests || null}
                             color={"#e6ff01"} />
-                    </Row>
-                    <Row>
-                        <CovidCard
-                            covidText={"Critical"}
-                            covidCases={this.props.selectedCountry.critical || null}
-                            color="#ff01ff"
-                        />
                         <CovidCard
                             covidText={"Deaths"}
                             covidCases={this.props.selectedCountry.deaths || null}

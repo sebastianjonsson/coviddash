@@ -46,7 +46,7 @@ export default class CovidCard extends Component {
         else {
             cards =
                 <>
-                    <Col className="covidTextColor covidTextFont covidFontSizeMobile">
+                    <Col className="covidTextColor covidFontSizeMobile">
                         <Row>
                             <Col className="text-center mt-1">
                                 {this.props.covidText}
