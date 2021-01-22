@@ -3,14 +3,14 @@ import { Action, Actions } from '../actions/action';
 import { EventEmitter } from '../flux/eventEmitter';
 import { BaseStore } from './baseStore';
 
-export class CovidStatsStore extends BaseStore {
-    static getName() { return "CovidStatsStore"; }
+export class CovidNewsStore extends BaseStore {
+    static getName() { return "CovidNewsStore"; }
 
     constructor(eventEmitter: EventEmitter) {
         super(eventEmitter, []);
 
         Dispatcher.register((action: Action) => {
-            if (action.type === Actions.covidStatsLoaded) {
+            if (action.type === Actions.covidNewsLoaded) {
                 this.state = action.data;
                 this.emitter.emit();
             }

@@ -1,7 +1,7 @@
 import Dispatcher from '../flux/dispatcher';
 import { Action, Actions } from '../actions/action';
-import http from '../api/http-common';
 import { CovidRoutes } from '../api/covidRoutes';
+import { covidNewsUrl, covidStatsUrl } from '../api/http-common';
 
 export class ActionCreator {
     constructor(api: CovidRoutes) {
@@ -13,6 +13,12 @@ export class ActionCreator {
             Dispatcher.dispatch(new Action(Actions.covidCountriesLoaded, response.data));
         });
     }
+
+    loadCovidNews() {
+        return this.api.getCovidNews().then(response => {
+            Dispatcher.dispatch(new Action(Actions.covidNewsLoaded, response.data));
+        });
+    }
 }
 
-export default new ActionCreator(new CovidRoutes(new http()));
+export default new ActionCreator(new CovidRoutes(new covidStatsUrl(), new covidNewsUrl()));

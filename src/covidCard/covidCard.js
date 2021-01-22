@@ -5,20 +5,6 @@ import './covidCard.css';
 import './covidCardMobile.css';
 
 export default class CovidCard extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            matches: window.matchMedia("(max-width: 768px)").matches
-        }
-    }
-
-    componentDidMount() {
-
-        const handler = e => this.setState({ matches: e.matches });
-        window.matchMedia("(max-width: 768px)").addListener(handler);
-    }
-
     render() {
         var numbers = this.props.covidCases;
 
@@ -26,9 +12,8 @@ export default class CovidCard extends Component {
             numbers = toCommas(numbers);
         }
 
-        var cards;
-        if (!this.state.matches) {
-            cards =
+        return (
+            <>
                 <Col className="covidTextColor covidTextFont covidFontSize">
                     <Row>
                         <Col className="text-center mt-3">
@@ -41,29 +26,6 @@ export default class CovidCard extends Component {
                         </Col>
                     </Row>
                 </Col>
-        }
-
-        else {
-            cards =
-                <>
-                    <Col className="covidTextColor covidFontSizeMobile">
-                        <Row>
-                            <Col className="text-center mt-1">
-                                {this.props.covidText}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col style={{ color: this.props.color }} className="text-center">
-                                {numbers ? numbers : "No data"}
-                            </Col>
-                        </Row>
-                    </Col>
-                </>
-        }
-
-        return (
-            <>
-                {cards}
             </>
         )
     }

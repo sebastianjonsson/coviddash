@@ -8,6 +8,8 @@ import './covidDashMobile.css';
 import logo from '.././image/corona.jpg';
 import CountryDropDownSelect from '../components/countryDropDownSelect';
 import CountryCard from '../countryCards/countryCard';
+import CovidTable from '../covidTable/covidTable';
+import CovidNews from '../covidNews/covidNews';
 
 export default class CovidDash extends Component {
     constructor(props) {
@@ -17,7 +19,6 @@ export default class CovidDash extends Component {
 
         this.state = {
             covid: this.store.get(),
-            covidStats: [],
             matches: window.matchMedia("(max-width: 768px)").matches,
             selectedCountriesStats: [],
         };
@@ -90,33 +91,33 @@ export default class CovidDash extends Component {
             </Container>
         }
         else {
-            dash = <Container>
-                <Col xs={{offset: 2}}>
-                    <Row>
-                        <Col className="covidTrackerSizeMobile covidTrackerFontMobile ml-2">
-                            Corona Tracker
+            dash =
+                <Container>
+                    <Col xs={{ offset: 2 }}>
+                        <Row>
+                            <Col className="covidTrackerSizeMobile covidTrackerFontMobile ml-2">
+                                Corona Tracker
                             <img src={logo} width="90" height="90" alt=""></img>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col className="mt-1">
-                    <CountryDropDownSelect
-                        countries={this.state.covid.map((country => country.country))}
-                        defaultvalue={"Sweden"}
-                        onChange={this.handleChange}
-                        isMobile={true}
-                    />
-                    <Row className="mt-2">
-                        {this.state.selectedCountriesStats.map((selectedCountry, index) =>
-                            <CountryCard
-                                key={index}
-                                selectedCountry={selectedCountry}
-                                isMobile={true}
-                            />
-                        )}
-                    </Row>
-                </Col>
-            </Container>
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Col className="mt-1">
+                        <CountryDropDownSelect
+                            countries={this.state.covid.map((country => country.country))}
+                            defaultvalue={"Sweden"}
+                            onChange={this.handleChange}
+                            isMobile={true}
+                        />
+                    </Col>
+                    <Col className="mt-3">
+                        <CovidTable
+                            countries={this.state.selectedCountriesStats}
+                        />
+                    </Col>
+                    <Col>
+                        <CovidNews />
+                    </Col>
+                </Container>
         }
         return (
             <>

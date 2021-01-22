@@ -1,7 +1,12 @@
-import http from "./http-common";
+import { covidNewsUrl, covidStatsUrl } from "./http-common";
+
 
 export class CovidRoutes {
     getAllCountries() {
-        return http.get("/countries");
+        return covidStatsUrl.get("/countries");
+    }
+
+    getCovidNews() {
+        return covidNewsUrl.get();
     }
 }

@@ -1,0 +1,8 @@
+.tableSize {
+    max-height: 60vw;
+    overflow-y: auto;
+}
+
+.covidFontSizeMobile {
+    font-size: 3.3vw;
+}
