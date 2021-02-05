@@ -16,7 +16,7 @@ export class ActionCreator {
 
     loadCovidNews() {
         return this.api.getCovidNews().then(response => {
-            Dispatcher.dispatch(new Action(Actions.covidNewsLoaded, response.data));
+            Dispatcher.dispatch(new Action(Actions.covidNewsLoaded, response.data.Entries));
         });
     }
 }

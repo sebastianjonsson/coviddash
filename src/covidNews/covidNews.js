@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Button, Card, CardBody, CardHeader, UncontrolledCollapse } from 'reactstrap';
 import ActionCreator from '../actions/actionCreator';
-import { CovidNewsStore } from '../stores/CovidNewsStore'
-import StoreFactory from '../stores/storeFactory'
+import { CovidNewsStore } from '../stores/CovidNewsStore';
+import StoreFactory from '../stores/storeFactory';
+import "./covidNews.css";
+import Collapsible from 'react-collapsible';
 
 export default class CovidNews extends Component {
     constructor(props) {
@@ -10,7 +13,7 @@ export default class CovidNews extends Component {
         this.store = StoreFactory.getInstanceOf(CovidNewsStore);
 
         this.state = {
-            news: this.store.get(),
+            news: this.store.get()
         }
     }
 
@@ -27,8 +30,16 @@ export default class CovidNews extends Component {
     }
 
     render() {
+        console.log(this.state.news);
         return (
             <>
+                {this.state.news.map((news) =>
+                    <Collapsible className="textColor newsFontSizeMobile" trigger={<Button className="newsFontSizeMobile buttonSize">{news.Title}</Button>}>
+                        <p className="textColor newsFontSizeMobile mt-2">
+                            {news.Summary}
+                        </p>
+                    </Collapsible>
+                )}
             </>
         )
     }

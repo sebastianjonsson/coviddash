@@ -5,7 +5,6 @@ import './covidTable.css';
 
 export default class CovidTable extends Component {
     render() {
-
         return (
             <Row className="tableSize">
                 <Table dark>
