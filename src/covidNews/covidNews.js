@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, CardHeader, UncontrolledCollapse } from 'reactstrap';
+import { Button } from 'reactstrap';
 import ActionCreator from '../actions/actionCreator';
 import { CovidNewsStore } from '../stores/CovidNewsStore';
 import StoreFactory from '../stores/storeFactory';
